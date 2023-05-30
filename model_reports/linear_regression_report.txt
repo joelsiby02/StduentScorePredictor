@@ -1,0 +1,5 @@
+Model: linear_regression
+RMSE: 2.562021432416793e-14
+MAE: 1.8740564655672644e-14
+R^2 Score: 1.0
+

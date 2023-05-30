@@ -1,0 +1,5 @@
+Model: support_vector_regression
+RMSE: 5.424330672433484
+MAE: 1.33362879177011
+R^2 Score: 0.8627427602101073
+
