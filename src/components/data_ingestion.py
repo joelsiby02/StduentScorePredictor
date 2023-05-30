@@ -26,7 +26,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         try:
             # Load the DataFrame
-            df = pd.read_csv('notebook\data\stud.csv')
+            df = pd.read_csv('notebook\data\DATA_ORG.csv')
             logging.info("DataFrame loaded")
 
             # Create directories for train, raw, test data

@@ -28,7 +28,9 @@ class DataTransformation:
         try:
             # Separating cat & num features
             cat_cols = ['gender', 'race_ethnicity', "parental_level_of_education", 'lunch', 'test_preparation_course']
-            num_cols = ["writing_score", "reading_score"]
+            num_cols = ["math_score", "writing_score", "reading_score", "total_score"]
+            
+            # average
               
             # Adding new features
             # num_cols += ['total_score', 'average']
@@ -72,53 +74,29 @@ class DataTransformation:
             obj_inherit = self.Obj_DataTransform()
             
             # Specifying the target column
-            target_col_name = 'math_score'
+            target_col_name = 'average'
             
             # Separating features and target for train_df
             X_train = train_df.drop(columns=[target_col_name], axis=1)
-            y_train = train_df[target_col_name]
+            X_test = train_df[target_col_name]
             
             logging.info("Separating the input features and the target feature from the train datasets")
 
             # Separating features and target for test_df
-            X_test = test_df.drop(columns=[target_col_name], axis=1)
+            y_train = test_df.drop(columns=[target_col_name], axis=1)
             y_test = test_df[target_col_name]
 
             logging.info("Separating the input features and the target feature from  test datasets")
             
              
             input_feature_train_arr=obj_inherit.fit_transform(X_train)
-            input_feature_test_arr=obj_inherit.transform(X_test)
+            input_feature_test_arr=obj_inherit.transform(y_train)
 
             train_arr = np.c_[
-                input_feature_train_arr, np.array(y_train)
+                input_feature_train_arr, np.array(X_test)
             ]
             test_arr = np.c_[input_feature_test_arr, np.array(y_test)]
 
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            # # Fitting and transforming on X_train
-            # fit_transform_Xtrain_features = obj_inherit.fit_transform(X_train)
-            # # Transforming X_test
-            # transform_Xtest_features = obj_inherit.transform(X_test)
-            
-            # # Fitting and transforming on y_train
-            # fit_transform_ytrain_features = obj_inherit.fit_transform(y_train)
-            # # Transforming y_test
-            # transform_ytest_features = obj_inherit.transform(y_test)
-            
-            # # Concatenating the transformed features
-            # train_arr = np.c_[fit_transform_Xtrain_features, fit_transform_ytrain_features]
-            # test_arr = np.c_[transform_Xtest_features, transform_ytest_features]
-            
             # Logging completion
             logging.info("Data transformation completed")
             
