@@ -7,12 +7,15 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+from data_transformation import DataTransformation, DataTransformationConfig
+
 
 @dataclass
 class DataIngestionConfig:
     train_data_path: str = os.path.join("artifacts", "train.csv")
     test_data_path: str = os.path.join("artifacts", "test.csv")
     raw_data_path: str = os.path.join("artifacts", "data.csv")
+    # preprocessed_path: str = os.path.join("artifacts", "preprocessed.csv")
 
 
 class DataIngestion:
@@ -36,11 +39,11 @@ class DataIngestion:
             train_set, test_set = train_test_split(df, test_size=0.2, random_state=42)
             logging.info("Train and test split done")
 
-            # Save the raw , train and test sets as CSV files
+            # Save the raw, train, and test sets as CSV files
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
             train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
             test_set.to_csv(self.ingestion_config.test_data_path, index=False, header=True)
-            logging.info("Raw, Train and test CSV files created")
+            logging.info("Raw, Train, and test CSV files created")
 
             return (
                 self.ingestion_config.train_data_path,
@@ -52,6 +55,10 @@ class DataIngestion:
             raise CustomException(e, sys)
 
 
-if __name__ =="__main__":
+
+if __name__ == "__main__":
     obj = DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data, test_data, _ = obj.initiate_data_ingestion()
+    
+    data_transformation = DataTransformation()
+    train_arr, test_arr, _ = data_transformation.initiate_DataTransformation(train_data, test_data)
