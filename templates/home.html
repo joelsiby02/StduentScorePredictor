@@ -29,6 +29,15 @@
       font-size: 16px;
     }
   </style>
+  <script>
+    function calculateTotal() {
+      var mathScore = parseFloat(document.getElementById("math_score").value);
+      var readingScore = parseFloat(document.getElementById("reading_score").value);
+      var writingScore = parseFloat(document.getElementById("writing_score").value);
+      var totalScore = mathScore + readingScore + writingScore;
+      document.getElementById("total_score").value = totalScore;
+    }
+  </script>
 </head>
 <body>
     <div class="login">
@@ -52,7 +61,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Race or Ethnicity</label>
-            <select class="form-control" name="race_ethnicity" placeholder="Enter you ethnicity" required>
+            <select class="form-control" name="race_ethnicity" placeholder="Enter your ethnicity" required>
                 <option class="placeholder" selected disabled value="">Select Ethnicity</option>
                 <option value="group A">
                     Group A
@@ -74,7 +83,7 @@
         <div class="mb-3">
             <label class="form-label">Parental Level of Education</label>
             <select class="form-control" name="parental_level_of_education"
-                placeholder="Enter you Parent Education" required>
+                placeholder="Enter your Parent Education" required>
                 <option class="placeholder" selected disabled value="">Select Parent Education</option>
                 <option value="associate's degree">
                     associate's degree
@@ -98,7 +107,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Lunch Type</label>
-            <select class="form-control" name="lunch" placeholder="Enter you Lunch" required>
+            <select class="form-control" name="lunch" placeholder="Enter your Lunch" required>
                 <option class="placeholder" selected disabled value="">Select Lunch Type</option>
                 <option value="free/reduced">
                     free/reduced
@@ -110,9 +119,9 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Test preparation Course</label>
-            <select class="form-control" name="test_preparation_course" placeholder="Enter you Course"
+            <select class="form-control" name="test_preparation_course" placeholder="Enter your Course"
                 required>
-                <option class="placeholder" selected disabled value="">Select Test_course</option>
+                <option class="placeholder" selected disabled value="">Select Test Course</option>
                 <option value="none">
                     None
                 </option>
@@ -123,25 +132,23 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Math Score out of 100</label>
-            <input class="form-control" type="number" name="math_score"
-                placeholder="Enter your Reading score" min='0' max='100' />
-        </div>
+            <input class="form-control" type="number" id="math_score" name="math_score"
+                placeholder="Enter your Math score" min='0' max='100' onchange="calculateTotal()" />
         </div>
         <div class="mb-3">
             <label class="form-label">Reading Score out of 100</label>
-            <input class="form-control" type="number" name="reading_score"
-                placeholder="Enter your Reading score" min='0' max='100' />
+            <input class="form-control" type="number" id="reading_score" name="reading_score"
+                placeholder="Enter your Reading score" min='0' max='100' onchange="calculateTotal()" />
         </div>
         <div class="mb-3">
             <label class="form-label">Writing Score out of 100</label>
-            <input class="form-control" type="number" name="writing_score"
-                placeholder="Enter your Writing Score" min='0' max='100' />
-        </div>
+            <input class="form-control" type="number" id="writing_score" name="writing_score"
+                placeholder="Enter your Writing Score" min='0' max='100' onchange="calculateTotal()" />
         </div>
         <div class="mb-3">
             <label class="form-label">Total Score out of 300</label>
-            <input class="form-control" type="number" name="total_score"
-                placeholder="Enter your Total Score" min='0' max='300' />
+            <input class="form-control" type="number" id="total_score" name="total_score"
+                placeholder="Automatically calculated" min='0' max='300' readonly />
         </div>
         <div class="mb-3">
             <input class="btn btn-primary" type="submit" value="Your Average is : " required />
