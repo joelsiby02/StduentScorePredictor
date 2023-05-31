@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #8B00FF, #4B0082);
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 100px;
+      font-size: 36px;
+      opacity: 0; /* Set initial opacity to 0 */
+      animation: fade-in 1s forwards; /* Apply the fade-in animation */
+    }
+    @keyframes fade-in {
+      0% {
+        opacity: 0; /* Start with opacity 0 */
+      }
+      100% {
+        opacity: 1; /* End with opacity 1 */
+      }
+    }
+    p {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Model Deployment</h1>
+    <p>This is the home page of the model deployment application.</p>
+    <p>Click the button below to go to the prediction page.</p>
+    <a href="/predict" style="text-decoration: none;">
+      <button style="padding: 10px 20px; font-size: 18px;">Go to Prediction</button>
+    </a>
+  </div>
+</body>
+</html>

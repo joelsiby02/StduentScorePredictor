@@ -71,10 +71,27 @@ def save_report_to_file(report, model_name):
 def select_best_model(models, results):
     best_model = None
     best_rmse = np.inf
-
+    
     for model_name, rmse in results.items():
         if rmse < best_rmse:
             best_model = models[model_name]['model']
             best_rmse = rmse
-
+    logging.info(f"Selecting {best_model}")
     return best_model
+
+
+
+...
+
+def load_model_and_preprocessor(model_path="artifacts\Model.pkl", preprocessor_path="artifacts\preprocessed.pkl"):
+    try:
+        logging.info(f"Inside model & Prepocessed path in utils")
+        with open(model_path, "rb") as model_file, open(preprocessor_path, "rb") as preprocessor_file:
+            model = pickle.load(model_file)
+            preprocessor = pickle.load(preprocessor_file)
+        return model, preprocessor
+    except Exception as e:
+        raise CustomException(e, sys)
+
+
+
